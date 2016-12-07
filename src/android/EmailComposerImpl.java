@@ -34,6 +34,8 @@ import android.net.Uri;
 import android.text.Html;
 import android.util.Base64;
 import android.util.Log;
+import android.util.Patterns;
+
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -515,8 +517,8 @@ public class EmailComposerImpl {
 
         try {
             for (Account account : am.getAccounts()) {
-                if (account.type.endsWith("mail")) {
-                    return true;
+                if (Patterns.EMAIL_ADDRESS.matcher(account.name).matches()) {
+                    return  true;
                 }
             }
         } catch (Exception e) {
